@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/example.js" defer></script>
     <title>Coronet</title>
 </head>
 <body>
@@ -37,7 +36,7 @@
         </div>
 
         <div id="counter">
-            <h2 id="counterText"><%=cucc%></h2>
+            <h2 id="counterText"></h2>
         </div>
 
         <div id="news">
@@ -53,6 +52,45 @@
         <p>Copyright Jeff 2020</p>
     </div>
 
+    <script>
+        const counterText = document.getElementById("counterText");
+        const newsTag = document.getElementById("news");
 
+        const theJson = <%=cucc%>
+
+        theJson.news.forEach((news) => {
+            currentNew = document.createElement("div");
+            title = document.createElement("h1");
+            title.appendChild(document.createTextNode(news.title));
+            currentNew.appendChild(title);
+            timetoread = document.createElement("h2");
+            timetoread.appendChild(document.createTextNode(news.timetoread + " elolvasni"));
+            currentNew.appendChild(timetoread);
+            link = document.createElement("a");
+            link.appendChild(document.createTextNode(news.url));
+            link.setAttribute("href", news.url);
+            currentNew.appendChild(link);
+            currentNew.id = "caption";
+            currentNew.style.paddingTop = "40px"
+
+            newsTag.appendChild(currentNew);
+        });
+
+
+        function updateTimer() {
+            const minutesLeft = 60 - (new Date(window.performance.now()).getMinutes())
+            console.log(minutesLeft)
+            if (minutesLeft <= 0) {
+                counterText.innerHTML = "Most"
+                alert("Moss kezet!");
+            } else {
+                counterText.innerHTML = `${minutesLeft} perc`;
+            }
+            
+        }
+
+        setInterval(updateTimer, 1000);
+
+    </script>
 </body>
 </html>
