@@ -8,8 +8,23 @@ const thePort = process.env.PORT || 3000
 app.set('view engine', 'ejs');
 app.use(express.static('static'))
 
+cucc = {
+  "news": [
+    {
+      "title": "adam buta",
+      "timetoread": "5 perc",
+      "url": "http://localhost:3000"
+    },
+    {
+      "title": "peti is buta",
+      "timetoread": "5 perc",
+      "url": "http://localhost:3000"
+    }
+  ]
+}
+
 app.get('/', (req, res) => {
-  res.render('index', {cucc:"1"});
+  res.render('index', {cucc: JSON.stringify(cucc)});
 });
 
 

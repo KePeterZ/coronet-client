@@ -15,23 +15,29 @@
                 <div id="landing-text-inner">
                     <h1>Coronet</h1>
                     <h2 id="generic">Minden egyben koronavírus applikáció</h2>
-                    <a href="menu.html" class="btn">thing1</a> <!--hrefeket kicserélni-->
+                    <button type="button" onclick="start()" class="btn">Kézmosás időzítő indítása</button> <!--hrefeket kicserélni-->
 
-                    <a href="menu.html" class="btn">thing2</a>
+                    <button type="button" onclick="stop()" class="btn">Kézmosás időzítő szüneteltetése</button>
 
-                    <a href="menu.html" class="btn">thing3</a>
-
+                    <button type="button" onclick="reset()" class="btn">Kézmosás időzítő újraindítása</button>
+                    <!--
                     <a href="menu.html" class="btn">thing4</a>
 
                     <a href="menu.html" class="btn">thing5</a>
 
                     <a href="menu.html" class="btn">thing6</a>
-
+                     -->
                 </div>
             </div>
         </div>
-
         <div id="counter-top">
+            <h2>Kézmosás időzítő:</h2>
+        </div>
+        <div id="counter">
+            <h2 id="handWashText"></h2>
+        </div>
+
+        <div id="counter-top2">
             <h2>A következő kézmosásig:</h2>
         </div>
 
@@ -41,22 +47,22 @@
 
         <div id="news">
             <div id="header">
-                <h2 id="news">Hírek</h2>
+                <h1 id="news">Hírek</h1>
             </div>
 
         </div>
     <main>
 
     <div id="footer">
-
         <p>Copyright Jeff 2020</p>
     </div>
 
-    <script>
+    <script defer>
         const counterText = document.getElementById("counterText");
+        const handWashText = document.getElementById("handWashText")
         const newsTag = document.getElementById("news");
 
-        const theJson = <%=cucc%>
+        theJson = <%- cucc %>;
 
         theJson.news.forEach((news) => {
             currentNew = document.createElement("div");
@@ -71,15 +77,48 @@
             link.setAttribute("href", news.url);
             currentNew.appendChild(link);
             currentNew.id = "caption";
-            currentNew.style.paddingTop = "40px"
+            currentNew.style.paddingBottom = "40px"
 
             newsTag.appendChild(currentNew);
         });
 
+        let handWashTimer = 30;
+        let hWInterval;
+        let stopped = true;
+        handWashText.innerHTML = handWashTimer + " mp"
+
+        function countDown() {
+            if (handWashTimer == -1) {
+                reset();
+                return;
+            }
+            handWashText.innerHTML = handWashTimer + " mp"
+
+            handWashTimer --;
+        }
+
+        function start() {
+            stopped = false;
+            hWInterval = setInterval(countDown, 1000);
+        }
+
+        function stop() {
+            stopped = true;
+            clearInterval(hWInterval);
+        }
+
+        function reset() {
+            stopped = true;
+            clearInterval(hWInterval);
+            handWashTimer = 30;
+            handWashText.innerHTML = handWashTimer + " mp"
+        }
+
+
+
 
         function updateTimer() {
             const minutesLeft = 60 - (new Date(window.performance.now()).getMinutes())
-            console.log(minutesLeft)
             if (minutesLeft <= 0) {
                 counterText.innerHTML = "Most"
                 alert("Moss kezet!");
