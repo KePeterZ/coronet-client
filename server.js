@@ -13,7 +13,7 @@ cucc = {
     {
       "title": "hír 1",
       "timetoread": "5 perc",
-      "url": "http://localhost:3000"
+      "url": "http://www.google.com"
     },
     {
       "title": "hír2",

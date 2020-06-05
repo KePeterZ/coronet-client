@@ -8,7 +8,7 @@ body {
     font-family: Roboto, sans-serif;
 }
 
-h1 {
+h1, #link {
 
     font-weight: 400;
     font-size: 2.5rem;
@@ -68,8 +68,8 @@ h3 {
 img {
 
     display: block;
-
-    margin: 30px auto;
+    margin:auto;
+    margin-bottom:10px;
     border: 2px solid #ddd;
     border-radius: 50px;
     /*height: 50vh;*/

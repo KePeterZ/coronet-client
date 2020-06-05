@@ -58,7 +58,7 @@
     <main>
 
     <div id="footer">
-        <p>Copyright Jeff 2020</p>
+        <p>Copyright Coronet 2020</p>
     </div>
 
     <script defer>
@@ -70,16 +70,16 @@
 
         theJson.news.forEach((news) => {
             currentNew = document.createElement("div");
-            title = document.createElement("h1");
+            title = document.createElement("a");
             title.appendChild(document.createTextNode(news.title));
+            title.setAttribute("href", news.url);
+            title.style.textDecoration = "none"
+            title.id = "link";
             currentNew.appendChild(title);
             timetoread = document.createElement("h2");
             timetoread.appendChild(document.createTextNode(news.timetoread + " elolvasni"));
             currentNew.appendChild(timetoread);
-            link = document.createElement("a");
-            link.appendChild(document.createTextNode(news.url));
-            link.setAttribute("href", news.url);
-            currentNew.appendChild(link);
+
             currentNew.id = "caption";
             currentNew.style.paddingBottom = "40px"
 
