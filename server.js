@@ -11,12 +11,12 @@ app.use(express.static('static'))
 cucc = {
   "news": [
     {
-      "title": "adam buta",
+      "title": "hír 1",
       "timetoread": "5 perc",
       "url": "http://localhost:3000"
     },
     {
-      "title": "peti is buta",
+      "title": "hír2",
       "timetoread": "5 perc",
       "url": "http://localhost:3000"
     }
