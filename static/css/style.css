@@ -68,7 +68,10 @@ h3 {
 img {
 
     display: block;
-    width: 100%;
+
+    margin: 30px auto;
+    border: 2px solid #ddd;
+    border-radius: 50px;
     /*height: 50vh;*/
 }
 
