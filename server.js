@@ -1,5 +1,6 @@
 let express = require('express');
 let app = express();
+let fs = require('fs')
 
 // Setup port
 const thePort = process.env.PORT || 3000
@@ -8,23 +9,8 @@ const thePort = process.env.PORT || 3000
 app.set('view engine', 'ejs');
 app.use(express.static('static'))
 
-cucc = {
-  "news": [
-    {
-      "title": "hír 1",
-      "timetoread": "5 perc",
-      "url": "http://www.google.com"
-    },
-    {
-      "title": "hír2",
-      "timetoread": "5 perc",
-      "url": "http://localhost:3000"
-    }
-  ]
-}
-
 app.get('/', (req, res) => {
-  res.render('index', {cucc: JSON.stringify(cucc)});
+  res.render('index', {cucc: fs.readFileSync("./static/hirek.json")+''});
 });
 
 
